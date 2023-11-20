@@ -1,0 +1,84 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.11.2"
+    id "io.freefair.lombok" version "8.4"
+}
+
+group = "ru.rest"
+version = "1.0-SNAPSHOT"
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter:5.10.1',
+            //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+            'com.codeborne:selenide:6.19.1',
+            //assertThat
+            'org.assertj:assertj-core:3.24.2',
+            // PDF XLS CSV GSON
+            //'com.codeborne:pdf-test:1.5.0',
+            //'com.codeborne:xls-test:1.4.3',
+            //'com.opencsv:opencsv:5.8',
+            //'com.google.code.gson:gson:2.10.1',
+            //JavaFaker
+            'com.github.javafaker:javafaker:1.0.2',
+            //Lombok
+            'org.projectlombok:lombok:1.18.30',
+            //Allure integration
+            'io.qameta.allure:allure-selenide:2.24.0',
+            // logs
+            //'org.slf4j:slf4j-simple:2.0.9',
+            //owner
+            'org.aeonbits.owner:owner:1.0.12',
+            //rest
+            'io.rest-assured:rest-assured:5.3.2'
+    )
+
+
+    allure {
+        report {
+            version.set("2.24.0")
+        }
+        adapter { //folder
+            allureJavaVersion.set("2.24.0")
+            aspectjVersion.set("1.9.5")
+            aspectjWeaver.set(true) //annotation @Step
+            frameworks {
+                junit5 { //testNG junit4
+                    adapterVersion.set("2.24.0") //version
+                    enabled.set(true)
+                }
+            }
+        }
+    }
+
+
+    testRuntimeOnly(
+            'org.slf4j:slf4j-simple:2.0.9',
+            'org.junit.jupiter:junit-jupiter-engine:5.10.1'
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())// -D
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+}
