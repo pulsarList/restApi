@@ -1,4 +1,4 @@
-package rest;
+package restTest;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;

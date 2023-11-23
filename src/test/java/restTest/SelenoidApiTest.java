@@ -1,12 +1,27 @@
-package rest;
+package restTest;
 
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SelenoidApiTest {
+
+    @Test
+    void checkHubAbNoAuth() {
+        //clearBrowserCookies();
+        given()
+                .log().uri()
+                .when()
+                .get("https://selenoid.autotests.cloud/wd/hub/status")
+
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(401);
+    }
 
     @Test
     void selenoidRestRequest() {
@@ -98,19 +113,6 @@ public class SelenoidApiTest {
 
     }
 
-
-    @Test
-    void checkHubNoAuth() {
-        given()
-                .log().uri()
-                .when()
-                .get("https://selenoid.autotests.cloud/wd/hub/status")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(401);
-    }
 
     @Test
     void checkHubAuth200() {

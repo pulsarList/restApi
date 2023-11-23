@@ -1,10 +1,7 @@
-package rest;
+package restTest;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
