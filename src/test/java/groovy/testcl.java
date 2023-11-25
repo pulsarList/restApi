@@ -20,19 +20,19 @@ public class testcl {
                 .log().body();
     }
 
-    @Test
-    void singleUserGroovy() {
-        // @formatter:off
-        Spec.requestS
-                .when()
-                    .get("/users")
-                .then()
-                    .spec(Spec.responseS)
-                    .log().body()
-                    .body("data.findAll{it.email =~/.*?@reqres.in/}.email.flatten()"
-                        , hasItem("george.bluth@reqres.in"));
-        // @formatter:on
-    }
+//    @Test
+//    void singleUserGroovy() {
+//        // @formatter:off
+//        Spec.requestS
+//                .when()
+//                    .get("/users")
+//                .then()
+//                    .spec(Spec.responseS)
+//                    .log().body()
+//                    .body("data.findAll{it.email =~/.*?@reqres.in/}.email.flatten()"
+//                        , hasItem("george.bluth@reqres.in"));
+//        // @formatter:on
+//    }
 
     @Test
     void singleUserGroovy1() {

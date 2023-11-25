@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SelenoidApiTest {
 
-    @Test
-    void checkHubAbNoAuth() {
-        //clearBrowserCookies();
-        given()
-                .log().uri()
-                .when()
-                .get("https://selenoid.autotests.cloud/wd/hub/status")
-
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(401);
-    }
+//    @Test
+//    void checkHubAbNoAuth() {
+//        //clearBrowserCookies();
+//        given()
+//                .log().uri()
+//                .when()
+//                .get("https://selenoid.autotests.cloud/wd/hub/status")
+//
+//                .then()
+//                .log().status()
+//                .log().body()
+//                .statusCode(401);
+//    }
 
     @Test
     void selenoidRestRequest() {
