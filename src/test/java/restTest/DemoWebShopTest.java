@@ -1,6 +1,7 @@
 package restTest;
 
 import com.codeborne.selenide.Configuration;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
@@ -16,6 +17,8 @@ public class DemoWebShopTest {
 
     @BeforeAll
     public static void setUp() {
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browser = "chrome";
         baseURI = "https://demowebshop.tricentis.com";
         Configuration.baseUrl = baseURI;
     }
